@@ -1,7 +1,7 @@
 from ast import Index, Return
 from random import random
+from turtle import update
 
-from sqlalchemy import false
 
 
 List_Data_Talent = [
@@ -59,8 +59,8 @@ def MainMenu() :
             Menampilkan_DataTalent_SiapKerja()
         elif(PilihanMenu == '2') :
             Menambahkan_Data_Talent()
-        # elif(PilihanMenu == '3') :
-        #     Mengubah_Data()
+        elif(PilihanMenu == '3') :
+            Mengubah_Data()
         elif(PilihanMenu == '4') :
             MenghapusDataTalent()
         elif(PilihanMenu == '5') :
@@ -159,43 +159,72 @@ def Menambahkan_Data_Talent() :
             Menambahkan_Data_Talent()
 
 # Menu 3 (Update Data)
-# def Mengubah_Data() :
-#     # Sub Menu
-#     while True :
-#         print('''
-#         1. Mengubah List Data Talent
-#         2. Kembali Ke Menu Utama
-#         ''')
-#         SubMenu = input(' Masukkan angka submenu yang ingin dijalankan : ')
-#         if (SubMenu == '1') :
-#             JobCode == int(input('Masukkan Job Code'))
-#             Index = 0
-#             find = False
-#             for i in range(len(List_Data_Talent)) :
-#                 if List_Data_Talent[i]['Code'] == JobCode :
-#                     print('''
-#             Index   | Code  | Posisi | Jumlah | Gaji | PIC''')
-#                     print('\t\t{}   | {}\t    | {}  | {}     | {}   | {}'.format(i,List_Data_Talent[i]['Code'], List_Data_Talent[i]['Posisi'], List_Data_Talent[i]['Jumlah'], List_Data_Talent[i]['Gaji'], List_Data_Talent[i]['PIC'])) 
-#                     find = True
-        #             break
-        #         else:
-        #             Index+=1
-        #             break
-        #     if find == False:
-        #         print('\nJob Code tidak ditemukan')
-        #         continue
-        #     variable = YESNO()
-        #     if variable == "Y":
-        #         Kolom = input('Masukkan kolom yang ingin diubah : ')
-        #         List_Data_Talent[JobCode]
-        #         print('Data telah diubah')
-        #     elif variable =="N":
-        #         print('Data belum diubah')
-        #         Mengubah_Data()
-        #     else :
-        #         break
-        # else :
-        #     break
+
+def Mengubah_Data() :
+    # Sub Menu
+    while True :
+        print('''
+        1. Mengubah List Data Talent
+        2. Kembali Ke Menu Utama
+        ''')
+        SubMenu = input(' Masukkan angka submenu yang ingin dijalankan : ')
+        if (SubMenu == '1') :
+            JobCode = int(input('Masukkan Job Code : '))
+            index = 0
+            find = False
+            for i in range(len(List_Data_Talent)) :
+                if List_Data_Talent[i]['Code'] == JobCode :
+                    print('''
+            Index   | Code  | Posisi | Jumlah | Gaji | PIC''')
+                    print('\t\t{}   | {}\t    | {}  | {}     | {}   | {}'.format(i,List_Data_Talent[i]['Code'], List_Data_Talent[i]['Posisi'], List_Data_Talent[i]['Jumlah'], List_Data_Talent[i]['Gaji'], List_Data_Talent[i]['PIC'])) 
+                    find = True
+                    break
+                else :
+                    index+=1
+                    break
+            if find == False :
+                print('\nJob Code tidak ditemukan')
+                continue
+            check = input('Apakah ada data yang ingin diubah?(Y/N) ').upper()
+            if check == 'Y' :
+                UbahKolom = input('Masukkan kolom yang ingin diubah : ').capitalize()
+                if UbahKolom == 'Posisi' :
+                    a = (input('Posisi = ')).capitalize()
+                    check = input('Apakah data ini akan disimpan? (Y/N) ').upper()
+                    if check == 'Y':
+                        List_Data_Talent[index]['Posisi'] = a
+                        print('Data telah disimpan')
+                    else :
+                        print('Data belum disimpan')
+                elif UbahKolom == 'Jumlah' :
+                    b = int(input('Jumlah = ')).capitalize()
+                    if b != int :
+                        print('Masukkan data berupa angka!')
+                    check = input('Apakah data ini akan disimpan? (Y/N)').upper()
+                    if check =='Y' :
+                        List_Data_Talent[index]['Jumlah'] = b
+                        print('Data telah disimpan')
+                    else :
+                        print('Data belum disimpan')
+                elif UbahKolom == 'Gaji' :
+                    c = int(input('Gaji = '))
+                    if c != int :
+                        print('Masukkan data berupa angka!')
+                    check = input('Apakah data ini akan disimpan? (Y/N)').upper()
+                    if check == 'Y' :
+                        List_Data_Talent[index]['Gaji'] = c
+                        print('Data telah disimpan')
+                    else :
+                        print('Data belum disimpan')
+                elif UbahKolom == 'PIC' :
+                    d = (input('PIC = ')).capitalize()
+                    check = input('Apakah data ini akan disimpan? (Y/N)').upper()
+                    if check == 'Y' :
+                        List_Data_Talent[index]['PIC'] = d
+                    else :
+                        print('Data belum disimpan')
+        else :
+            break
 
 
 
